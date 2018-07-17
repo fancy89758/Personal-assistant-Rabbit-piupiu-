@@ -1,0 +1,61 @@
+#个人助理程序
+import time #导入时间模块
+from time import strftime
+import winsound #导入声音模块
+
+print('今天都有哪些事情要做呢？Flash')
+
+todayplan=input('今天都有哪些事情要做呢(like:画图 上课):').split(' ')
+
+w=len(todayplan)-1
+Notehour=[]
+Noteminite=[]
+
+def Timepoint():#Timepoint.py
+    try:
+        for w in range(0,10000):
+            n=0
+            for n in range(0,10000):
+                plan=todayplan[w]
+                planlist_original='输入开始的时间呦，就像这样（8:10）：'
+                planlist=planlist_original[0:2]+plan+planlist_original[2:]
+                print(planlist)
+                plan_time=input("Start time:").split(':')
+                Notehour[n]=plan_time(0)
+                Noteminite[n] = plan_time(1)
+                w-=1
+                n+=1
+    except IndexError:
+        print("时间敲定完毕，开始工作！")
+
+def Timealert():
+    flag = 1
+    while flag:
+        t = time.localtime()
+        now = time.strftime('%H:%M', t).split(':')  # 将时间转化为
+        if Notehour[0] == now[0] and Noteminite[0] == now[1]:
+            print("It's time to drawing!")
+            music = 'Good Time.wav'
+            winsound.PlaySound(music, winsound.SND_ALIAS)
+        flag = 0
+
+if w>2:
+    print('今天工作满满，加油哦！Flash')
+    Timepoint()
+elif w==-1:
+    print('今天不工作喽，痛痛快快的玩一下！Flash')
+else:
+    print('今天不那么累累，还可以玩一小会儿呢！Flash')
+    Timepoint()
+
+t=int(now[0])
+for t in range(8,12):
+   starttime=time.clock()
+   sum=0
+   for i in range(100000):
+      sum=sum+i
+      for i in range(1000):
+         sum=sum+1
+   endtime=time.clock()
+
+   print('siting time:%s seconds'%(endtime-starttime))
